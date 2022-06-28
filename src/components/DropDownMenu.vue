@@ -1,7 +1,7 @@
 <template>
 <div>
     <div >
-    <b-input-group style="width:250px;margin-bottom: 15px;">
+    <b-input-group style="margin-bottom: 15px;">
         
 
        <b-form-input id="textSearch" type="text"  placeholder="Search" > </b-form-input>
@@ -14,7 +14,9 @@
     <div id="bodyCard" >
         <div id="DropDownHeader" >
             <div id="DropDownNav">Surat Panggilan Dinas 
-            <span class="btnDropDownHeader"><b-icon-caret-down-fill v-b-toggle.collapse-1></b-icon-caret-down-fill>
+            <span class="btnDropDownHeader" id="btnDropDownHeader" v-on:click="changeIcon()">
+                <b-icon-chevron-down v-b-toggle.collapse-1 id></b-icon-chevron-down>
+                <b-icon-chevron-up v-b-toggle.collapse-1 id></b-icon-chevron-up>
             </span>
             </div>
         </div>
@@ -27,7 +29,7 @@
             <b-list-group-item class="listmenu2 d-flex justify-content-between align-items-center" >
                 <div class="DropdownHeaderChild">
                 <div class="DropDownNavChild">Surat Panggilan Dinas 
-                <span class="btnDropDownHeaderChild"><b-icon-caret-down-fill v-b-toggle.collapse-2></b-icon-caret-down-fill>
+                <span class="btnDropDownHeaderChild"><b-icon-chevron-down v-b-toggle.collapse-2></b-icon-chevron-down>
                 </span>
                 </div>
                 <b-collapse visible id="collapse-2">
@@ -60,6 +62,22 @@
 <script>
 export default {
     name: "DropDownMenu",
+    data() {
+        return {
+        CollapseMenu: false,
+        };
+    },
+    methods: {
+        changeIcon(data) {
+            this.products = data;
+        },
+    },
+    mounted() {
+        // axios
+        //   .get("http://localhost:3000/best-products")
+        //   .then((response) => this.setProducts(response.data))
+        //   .catch((error) => console.log(error))
+    }
 }
 </script>
 
@@ -67,8 +85,7 @@ export default {
 #bodyCard{
     background: #FFFFFF;
     border-radius: 6px;
-    width:250px;
-    box-shadow: 2px 2px 10px #888888;
+    box-shadow: 2px 2px 10px #dddddd;
 }
 
 #DropDownHeader{
@@ -97,7 +114,7 @@ export default {
 }
 .listmenu {
     border:none !important;
-    padding: 5px 50px 5px 30px !important;
+    padding: 0px 50px 0px 30px !important;
 }
 
 .listmenu2 {
@@ -106,7 +123,7 @@ export default {
 }
 .listmenu3 {
     border:none !important;
-    padding: 5px 29px 5px 15px !important;
+    padding: 5px 15px 5px 15px !important;
 }
 .badge {
     background: #7F7F7F !important;

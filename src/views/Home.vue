@@ -2,20 +2,33 @@
 <template>
   <div class="home"  >
     <Navbar />
-    <div style="background-color:#EBEDEF;height:1000px;font-family: 'Open Sans';font-style: normal; font-weight: 400;font-size: 14px;line-height: 150%;">
+    <div style="background-color:#ffffff;height:1000px;">
       <div style="padding-top: 20px;">
-      <b-container class="bv-example-row">
-        <b-row>
-          <b-col cols="3">
-            <div>
-              <DropDownMenu/>
+      <b-container class="bv-example-row divAll">
+                
+    
+        <b-row class="justify-content-md-center">
+          <b-col  sm="3" md="auto">
+            <b-collapse visible id="collapse-3" style="padding-bottom: 15px;">
+            <div >
+             
+                <DropDownMenu/>
             </div>
-            
-            </b-col>
-          <b-col  cols="9" >
-          <div id="divTable" >
+          </b-collapse>
+          <span class="btnCollapseDropDown" v-if="!CollapseMenu" v-on:click="CollapseMenu = !CollapseMenu">
+              <b-icon-arrow-bar-left  v-b-toggle.collapse-3></b-icon-arrow-bar-left>
+          </span>
+          <span class="btnCollapseDropDown" v-if="CollapseMenu" v-on:click="CollapseMenu = !CollapseMenu">
+              <b-icon-arrow-bar-right  v-b-toggle.collapse-3></b-icon-arrow-bar-right>
+          </span>
+        
+          </b-col>
+
+
+          <b-col>
+          <!-- <div id="divTable" > -->
             <Datatable/>
-          </div>
+          <!-- </div> -->
              
 
               
@@ -49,7 +62,7 @@ export default {
   },
   data() {
     return {
-      products: [],
+      CollapseMenu: false,
     };
   },
   methods: {
@@ -66,6 +79,12 @@ export default {
 };
 </script>
 <style>
+.divAll{
+  max-width: 100%  !important;
+}
+.home{
+  font-size: 14px !important;
+}
 #divTable{
 
       background-color: rgb(255, 255, 255);
@@ -80,5 +99,10 @@ export default {
     border-radius: 6px
 }
 
+.btnCollapseDropDown{
+      padding-right: 0;
+    font-size: 20px;
+    float: right;
+}
 </style>
 

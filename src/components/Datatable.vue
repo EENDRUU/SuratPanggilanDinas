@@ -12,14 +12,14 @@
     <b-icon-filter></b-icon-filter>&nbsp;Filter
     
     </button>
-    <table class="table" id="datatable">
+    <table class="table" id="datatable" style="width:100%">
       <thead>
         <tr>
-          <th class="headerTable">No</th>
-          <th class="headerTable">NIK</th>
+          <th class="headerTable" >No</th>
+          <th class="headerTable" >NIK</th>
           <th class="headerTable">NAMA</th>
-          <th class="headerTable">JUMLAH MANGKIR</th>
-          <th class="headerTable">REMANING TIME</th>
+          <th class="headerTable" >JUMLAH MANGKIR</th>
+          <th class="headerTable" >REMANING TIME</th>
           <th class="headerTable">TINDAK LANJUT</th>
         </tr>
       </thead>
@@ -338,6 +338,12 @@ export default {
  
     
     $('#datatable').DataTable({
+        scrollX:true,
+        scrollCollapse: true,
+        fixedHeader:    true,
+         fixedColumns: true,
+
+
         language: { 
           search: "",
           paginate: {
@@ -352,7 +358,7 @@ export default {
         "bInfo" : false,
         "sDom": 'Rfrtlip',
         orderCellsTop: true,
-        fixedHeader: true,
+        //fixedHeader: true,
         "pagingType": "full_numbers",
         initComplete: function () {
             var api = this.api();
@@ -364,7 +370,15 @@ export default {
                         $(api.column(colIdx).header()).index()
                     );
                     //var title = $(cell).text();
-                    $(cell).html('<input type="text" placeholder="Filter " />');
+                    console.log(colIdx)
+                    if(colIdx != 4 && colIdx !=5)
+                    {
+                       $(cell).html('<input type="text" placeholder="Filter " />');
+                    }
+                    else{
+                       $(cell).html('');
+                    }
+                   
  
                     // On every keypress in this input
                     $('input',$('.filters th').eq($(api.column(colIdx).header()).index()))
@@ -411,36 +425,107 @@ export default {
 <style >
 input{
     width: 100%;
+    
 }
+input[type="search"]
+{
+  padding-left: 15px !important;
+
+}
+
+
+/* @media (min-width: 768px)
+{
+  .col-md-auto {
+    flex: 0 0 auto;
+    width: auto !important;
+}
+
+} */
+
+@media (max-width: 991px)
+{
+  .col-sm-3 {
+    flex: 0 0 auto;
+    width: 100% !important;
+}
+}
+
+@media (max-width: 991px)
+{
+  .col-sm-3 {
+    flex: 0 0 auto;
+    width: 100% !important;
+}
+
+}
+
+@media (max-width: 991px)
+{
+  .col-sm-3 {
+    flex: 0 0 auto;
+    width: 100% !important;
+}
+}
+@media (min-width: 992px)
+{
+  .dataTables_scrollHeadInner{
+
+  width: 100% !important;
+}
+
+}
+
+.headerTable {
+  font-weight: 500 !important;
+}
+
+
 table{
     width:100% !important;
-    margin-bottom: 10px !important;
-    font-family: 'Open Sans';
-    font-style: normal;
+    /* margin-bottom: 10px !important; */
+    /* font-family: 'Open Sans';
+    font-style: normal; */
     font-weight: 400;
     font-size: 12px;
     line-height: 150%;
     /* border-left: 1px solid #DDDDDD !important; */
     /* margin-left: 20px !important; */
 }
+.dataTables_scroll{
+  margin-bottom: 10px !important;
+}
 tbody{
-     background-color: rgb(235, 237, 239);
- border-left: none;
+     background-color: #F9F9F9;
+      border-left: none;
 }
 thead{
     border: 1px solid #DDDDDD;
     background-color: #06283D;
+    
+;
     color: white;
 }
+
 td{
      /* border-left: 1px solid #DDDDDD !important; */
      border-right:  1px solid #DDDDDD !important; 
+}
+
+tr{
+     /* border-left: 1px solid #DDDDDD !important; */
+     border-bottom:  1px solid #DDDDDD !important; 
 }
 .headerTable{
     /* border-left: 1px solid #DDDDDD !important; */
     border-right:  1px solid #DDDDDD !important; 
     border-bottom: none !important;
 }
+.dataTables_scrollBody{
+
+  border-bottom: 1px solid white !important;
+}
+
 #datatable_filter > label > input{
     border: 1px solid #CCCCCC;
     border-radius: 4px;
@@ -454,7 +539,7 @@ td{
     border-color: #71C018;
     font-size: 14px;
     width: 120px;
-        padding: 5px 5px;
+    padding: 5px 5px;
     margin-bottom: 2px;
     margin-right: 5px;
 }
