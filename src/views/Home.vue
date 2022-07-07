@@ -1,48 +1,46 @@
-
 <template>
-  <div class="home"  >
+  <div class="home"  style="font-size:14px">
     <Navbar />
     <div style="background-color:#ffffff;height:1000px;">
       <div style="padding-top: 20px;">
-      <b-container class="bv-example-row divAll">
-                
-    
-        <b-row class="justify-content-md-center">
-          <b-col  sm="3" md="auto">
-            <b-collapse visible id="collapse-3" style="padding-bottom: 15px;">
-            <div >
-             
-                <DropDownMenu/>
-            </div>
-          </b-collapse>
-          <span class="btnCollapseDropDown" v-if="!CollapseMenu" v-on:click="CollapseMenu = !CollapseMenu">
-              <b-icon-arrow-bar-left  v-b-toggle.collapse-3></b-icon-arrow-bar-left>
-          </span>
-          <span class="btnCollapseDropDown" v-if="CollapseMenu" v-on:click="CollapseMenu = !CollapseMenu">
-              <b-icon-arrow-bar-right  v-b-toggle.collapse-3></b-icon-arrow-bar-right>
-          </span>
-        
-          </b-col>
-
-
-          <b-col>
-          <!-- <div id="divTable" > -->
-            <Datatable/>
-          <!-- </div> -->
-             
-
+        <b-container class="bv-example-row divAll">
+          <ViewMangkir/>
+                  
+      
+          <b-row class="justify-content-md-center">
+            <b-col  sm="3" md="auto">
+              <b-collapse visible id="collapse-3" style="padding-bottom: 15px;" v-model="CollapseMenu">
+              <div >
               
-          </b-col>
-        </b-row>
-      </b-container>
+                  <DropDownMenu/>
+              </div>
+            </b-collapse>
+            <span class="btnCollapseDropDown"
+                :class="CollapseMenu ? null : 'collapsed'"
+                :aria-expanded="CollapseMenu ? 'true' : 'false'"
+                aria-controls="collapse-3"
+                @click="CollapseMenu = !CollapseMenu"
+            >
+                <b-icon-arrow-bar-left  v-if="CollapseMenu"></b-icon-arrow-bar-left>
+                <b-icon-arrow-bar-right  v-if="!CollapseMenu"></b-icon-arrow-bar-right>
+            </span>
+          
+          
+            </b-col>
 
-        
-        
+
+            <b-col>
+            <!-- <div id="divTable" > -->
+              <Datatable/>
+            <!-- </div> -->
+              
+
+                
+            </b-col>
+          </b-row>
+        </b-container>
       </div>
-
-</div>
-
-
+    </div>
   </div>
 </template>
 
@@ -51,6 +49,7 @@
 import Navbar from "@/components/Navbar.vue";
 import DropDownMenu from "@/components/DropDownMenu.vue";
 import Datatable from "@/components/Datatable.vue";
+import ViewMangkir from "@/components/ViewMangkir.vue";
 //import axios from "axios";
 
 export default {
@@ -58,11 +57,12 @@ export default {
   components: {
     Navbar,
     DropDownMenu,
-    Datatable
+    Datatable,
+    ViewMangkir
   },
   data() {
     return {
-      CollapseMenu: false,
+      CollapseMenu: true,
     };
   },
   methods: {

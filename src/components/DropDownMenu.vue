@@ -14,25 +14,39 @@
     <div id="bodyCard" >
         <div id="DropDownHeader" >
             <div id="DropDownNav">Surat Panggilan Dinas 
-            <span class="btnDropDownHeader" id="btnDropDownHeader" v-on:click="changeIcon()">
-                <b-icon-chevron-down v-b-toggle.collapse-1 id></b-icon-chevron-down>
-                <b-icon-chevron-up v-b-toggle.collapse-1 id></b-icon-chevron-up>
+            <span class="btnDropDownHeader" id="btnDropDownHeader"
+             :class="isCollapse1 ? null : 'collapsed'"
+                :aria-expanded="isCollapse1 ? 'true' : 'false'"
+                aria-controls="collapse-1"
+                @click="isCollapse1 = !isCollapse1"
+             >
+                <b-icon-chevron-down  v-if="!isCollapse1" ></b-icon-chevron-down>
+                <b-icon-chevron-up  v-if="isCollapse1" ></b-icon-chevron-up>
             </span>
             </div>
         </div>
-        <b-collapse visible id="collapse-1" style="padding-bottom: 15px;">
+        <b-collapse visible id="collapse-1" v-model="isCollapse1" style="padding-bottom: 15px;">
         <b-list-group>
             <b-list-group-item class="listmenu d-flex justify-content-between align-items-center" >
             Karyawan Mangkir
-            <b-badge variant="primary" pill>14</b-badge>
+            <b-badge variant="primary" pill>99+</b-badge>
             </b-list-group-item>
             <b-list-group-item class="listmenu2 d-flex justify-content-between align-items-center" >
                 <div class="DropdownHeaderChild">
-                <div class="DropDownNavChild">Surat Panggilan Dinas 
-                <span class="btnDropDownHeaderChild"><b-icon-chevron-down v-b-toggle.collapse-2></b-icon-chevron-down>
+                <div class="DropDownNavChild"><span> Surat Panggilan Dinas</span> 
+               
+                <span class="btnDropDownHeaderChild" 
+                    :class="isCollapse2 ? null : 'collapsed'"
+                    :aria-expanded="isCollapse2 ? 'true' : 'false'"
+                    aria-controls="collapse-2"
+                    @click="isCollapse2 = !isCollapse2"
+                >
+                    <b-icon-chevron-down  v-if="!isCollapse2"></b-icon-chevron-down>
+                    <b-icon-chevron-up  v-if="isCollapse2"></b-icon-chevron-up>
                 </span>
+                 <b-badge style="margin-right: 8px;float:right" variant="primary" pill>15</b-badge>
                 </div>
-                <b-collapse visible id="collapse-2">
+                <b-collapse visible id="collapse-2" v-model="isCollapse2">
                 <b-list-group>
                     <b-list-group-item class="listmenu3 d-flex justify-content-between align-items-center" style="border:none;padding: 5px 29px 5px 15px;">
                     Surat Panggilan 1
@@ -64,7 +78,8 @@ export default {
     name: "DropDownMenu",
     data() {
         return {
-        CollapseMenu: false,
+            isCollapse1: true,
+            isCollapse2: false
         };
     },
     methods: {
@@ -114,21 +129,25 @@ export default {
 }
 .listmenu {
     border:none !important;
-    padding: 0px 50px 0px 30px !important;
+    padding: 0px 43px 0px 22px !important;
 }
 
 .listmenu2 {
     border:none !important;
-    padding: 5px 20px 5px 30px !important;
+    padding: 5px 19px 5px 22px !important;
 }
 .listmenu3 {
     border:none !important;
-    padding: 5px 15px 5px 15px !important;
+    padding: 6px 8px 0px 15px !important
 }
 .badge {
     background: #7F7F7F !important;
     border-radius: 6px !important;
-    padding: 4px 7px !important;
+
+    width: 30px !important;
+    height: 18px !important;
+    font-size: 10px !important;
+
 }
 
 .DropdownHeaderChild{
