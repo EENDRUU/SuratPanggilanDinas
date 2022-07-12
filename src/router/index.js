@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import SPD from '../views/MenuSPD.vue'
 import DashBoard from '../views/MenuDashboard.vue'
 import Profil from '../views/MenuProfil.vue'
 
@@ -20,7 +20,7 @@ Vue.use(VueRouter)
   {
     path: '/SPD',
     name: 'SPD',
-    component: Home
+    component: SPD
   },
   {
     path: '/Profil',

@@ -1,5 +1,5 @@
 <template>
-  <div class="home"  style="font-size:14px">
+  <div class="MenuSPD"  style="font-size:14px">
     <Navbar />
     <div style="background-color:#ffffff;height:1000px;">
       <div style="padding-top: 20px;">
