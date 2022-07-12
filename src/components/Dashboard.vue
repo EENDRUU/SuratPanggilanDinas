@@ -39,8 +39,11 @@
                         <p class="textCardHeader">
                             Quick Links
                         </p>
-                        <p class="textCard">
+                        <p class="textCard textLink">
+                            <router-link class="textLink" to="/profil">
                             <span><b-icon-person-circle class="iconCard"></b-icon-person-circle>Profile</span> 
+                            </router-link>
+                            
                         </p> 
                         <p class="textCard" style="margin-bottom: 0px;">
                             <span><b-icon-clock class="iconCard"></b-icon-clock>Attendance Logs</span> 
@@ -169,12 +172,22 @@
             <b-col cols="12" style="margin-top:20px">
                 <div class="cardDashboard" style="height:200px">
                     <b-tabs card>
-                    <b-tab title="Announcement" active>
-                        <b-card-text>Announcement</b-card-text>
-                    </b-tab>
-                    <b-tab title="FAQ">
-                        <b-card-text>FAQ</b-card-text>
-                    </b-tab>
+                        <b-tab title="Announcement" active>
+                            <b-card-text>Announcement</b-card-text>
+                        </b-tab>
+                        <b-tab title="FAQ">
+                            <b-card-text>FAQ</b-card-text>
+                        </b-tab>
+                        <template #tabs-end>
+                            <li role="presentation" class="nav-item align-self-center" id="btnExpand"> 
+                                <b-icon-arrows-angle-expand  v-on:click="expand()"></b-icon-arrows-angle-expand>
+                                </li>
+                        </template>
+                        <!-- <b-tab  style="margin-right: auto;">
+                             <template #title>
+                              
+                            </template>
+                        </b-tab> -->
                     </b-tabs>
                 </div>
             </b-col>
@@ -257,6 +270,11 @@ export default {
             image,
             chartFBK:40,
         }
+    },
+    methods: {
+        expand(){
+            alert('Click!');
+        }
     }
 
 }
@@ -265,7 +283,7 @@ export default {
 <style>
 .iconCard{
     font-size: 16px;
-    padding-right: 35px;
+    padding-right: 32px;
 }
 
 .textCard{
@@ -453,6 +471,18 @@ export default {
         background: white !important;
     border-top-left-radius: 10px !important;
     border-top-right-radius: 10px !important;
+}
+
+.textLink{
+    color: black !important;
+    text-decoration: none !important;
+}
+
+#btnExpand
+{
+    margin-right: 15px !important;
+    margin-left: auto !important;
+    cursor: pointer !important;
 }
 
 </style>
