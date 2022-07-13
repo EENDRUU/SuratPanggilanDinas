@@ -3,14 +3,28 @@
     <b-row>
         <b-col sm="3">
             <div class="divAllProfil">
-                <div class="cardBackground">
-                    
+                <div class="divBackgound">
+                    <div class="divUploadBackGround"  @click="$refs.fileBackground.click()">
+                        <input type="file" ref="fileBackground" style="display: none" @change="onFileChange2">
+                        <b-icon-camera-fill class="iconUpload" ></b-icon-camera-fill>
+                    </div>
+                    <div class="cardBackground" v-bind:style="{ 'background-image': 'url(' + urlBackground + ')' }"></div>
+                                         <!-- <b-img :src="backgroundCard"  class="cardBackground2" ></b-img> -->
                 </div>
 
                 <div class="cardProfil">
                     <div class="cardName" >
                         <div style="position: relative;top: -47.5px;">
-                            <b-img class="m1 imageProfil" :src="imageProfil" v-bind="mainProps" rounded="circle" alt="Circle image"></b-img>
+                            <div class="blur">
+                                <div class="divUpload"  @click="$refs.filePP.click()">
+                                    <input type="file" ref="filePP" style="display: none" @change="onFileChange">
+                                    <b-icon-camera-fill class="iconUpload" ></b-icon-camera-fill>
+                                </div>
+                               
+                                <b-img class="m1 imageProfil" :src="imagePP" v-bind="mainProps" rounded="circle" alt="Circle image">
+                            </b-img>
+                            </div>
+                            
                             <p class="textProfil" style="margin-bottom: 5px !important; margin-top: 10px;font-weight: 700;font-size: 18px;line-height: 25px;">Natalia Only</p>
                             <p class="textProfil" style="">2015014987</p>
                             <p class="textProfil" style="font-style: italic;">Software Support Jr. Manager</p>
@@ -29,7 +43,6 @@
                     </div>
                 </div>
             </div>
-
         </b-col>
         <b-col style="margin-top:20px">
             <div class="cardDetailProfil">
@@ -174,16 +187,48 @@
 
 <script>
 import imageProfil from "@/assets/images/profil.jpg";
-//import backgroundCard from "@/assets/images/unsplash.svg";
-import backgroundCard from "@/assets/images/1.jpg";
+ import imageBackground from "@/assets/images/unsplash.svg";
+// import backgroundCard from "@/assets/images/1.jpg";
 export default {
-        data() {
+    data() {
       return {
         imageProfil,
-        backgroundCard
+        // backgroundImage:{backgroundImage:"url('https://img.freepik.com/free-photo/grunge-paint-background_1409-1337.jpg?w=2000')"},
+        urlBackground: imageBackground,
+        //backgroundImage:{backgroundImage:urlBakcground},
+        imagePP: imageProfil
 
       }
+    },methods: {
+    onFileChange(e) {
+      var files = e.target.files || e.dataTransfer.files;
+      if (!files.length)
+        return;
+      this.createImage(files[0]);
+    },
+    onFileChange2(e) {
+      var files = e.target.files || e.dataTransfer.files;
+      if (!files.length)
+        return;
+      this.createImage2(files[0]);
+    },
+     createImage2(file) {
+      var reader = new FileReader();
+
+      reader.onload = (e) => {
+        this.urlBackground= e.target.result;
+      };
+      reader.readAsDataURL(file);
+    },
+    createImage(file) {
+      var reader = new FileReader();
+
+      reader.onload = (e) => {
+        this.imagePP = e.target.result;
+      };
+      reader.readAsDataURL(file);
     }
+  }
 
 }
 </script>
@@ -207,11 +252,15 @@ export default {
 
 }
 .cardBackground{
-    /* background-image: url("../assets/images/1.jpg"); */
     background-image: url("../assets/images/unsplash.svg");
     clip-path: polygon(0 0, 100% 0, 100% 39%, 0 22%);
     width: 100%;height: 100%;position: absolute;border-radius: 10px;
 
+}
+
+.cardBackground2{
+clip-path: polygon(0 0, 100% 0, 100% 100%, 0 64%);
+        width: 100%;height: 100%;position: absolute;border-radius: 10px;
 }
 
 .cardName{
@@ -294,5 +343,76 @@ export default {
     padding-right: 0px !important;
     box-shadow: 0px 1px 4px rgb(0 0 0 / 25%);
     border-radius: 10px;
+}
+
+
+/* .fadein img{
+opacity:0.5;
+transition: 1s ease;
+}
+
+.fadein img:hover{
+opacity:1;
+transition: 1s ease;
+} */
+
+.divUpload{
+        width: 45px !important;
+    height: 45px !important;
+    position: absolute !important;
+    right: 0 !important;
+    left: 0 !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    background-color: rgba(39, 44, 48, 0.75) !important;
+    border-radius: 50% !important;
+    top: 13% !important;
+    z-index: 1 !important;
+    display: none;
+        cursor: pointer;
+
+}
+
+.iconUpload{
+        color: white!important;
+    font-size: 20px !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    margin: auto !important;
+    position: absolute !important;
+    right: 0 !important;
+    left: 0 !important;
+
+
+}
+
+.blur{
+width: 95px;
+    height: 95px;
+    margin: auto;
+
+}
+.blur:hover .divUpload {
+    display: block;
+}
+
+.divUploadBackGround{
+width: 45px !important;
+    height: 45px !important;
+    position: absolute !important;
+    right: 4%!important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    background-color: rgba(39, 44, 48, 0.75) !important;
+    border-radius: 50% !important;
+    top: 1% !important;
+    z-index: 1 !important;
+    display: none;
+    cursor: pointer;
+
+}
+
+.divBackgound:hover .divUploadBackGround {
+        display: block;
 }
 </style>
