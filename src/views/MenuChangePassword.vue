@@ -1,26 +1,24 @@
 <template>
-  <div class="MenuProfil">
+  <div>
         <Navbar />
     <div style="background-color:rgba(241, 241, 241, 0.5);height: 500px;">
       <div style="padding-top: 20px;">
-          <Profil/>
+          <ChangePassword/>
       </div>
     </div>
    
   </div>
-  
 </template>
-
 <script>
-import Profil from "@/components/Profil.vue";
 import Navbar from "@/components/Navbar.vue";
+import ChangePassword from "@/components/ChangePassword.vue";
 //import axios from "axios";
 
 export default {
-  name: "MenuDashboard",
+  name: "MenuChangePassword",
   components: {
     Navbar,
-    Profil
+    ChangePassword
   },
   mounted() {
     // axios

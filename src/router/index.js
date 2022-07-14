@@ -3,6 +3,9 @@ import VueRouter from 'vue-router'
 import SPD from '../views/MenuSPD.vue'
 import DashBoard from '../views/MenuDashboard.vue'
 import Profil from '../views/MenuProfil.vue'
+import ChangeEmail from '../views/MenuChangeEmail.vue'
+import ChangePassword from '../views/MenuChangePassword.vue'
+
 
 Vue.use(VueRouter)
 
@@ -26,6 +29,16 @@ Vue.use(VueRouter)
     path: '/Profil',
     name: 'Profil',
     component: Profil
+  },
+  {
+    path: '/ChangeEmail',
+    name: 'ChangeEmail',
+    component: ChangeEmail
+  },
+  {
+    path: '/ChangePassword',
+    name: 'ChangePassword',
+    component: ChangePassword
   }
 ]
 
